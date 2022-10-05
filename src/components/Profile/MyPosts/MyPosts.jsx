@@ -2,10 +2,15 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = () => {
-    const postData = [
+    const posts = [
         {id: 1, message: "Hi, how are you?", likesCount: 10},
         {id: 2, message: "It's my first post", likesCount: 1000},
     ];
+
+    const postsElements = posts
+        .map(({message, likesCount}) => 
+            <Post message={message} likesCount={likesCount}/>
+        )
 
     return (
         <div className={s.myposts_block}>
@@ -15,9 +20,7 @@ const MyPosts = () => {
                 <button className={s.block}>Add post</button>
             </div>
             <div className={s.posts}>
-                {postData.map(({message, likesCount}) => 
-                    <Post message={message} likesCount={likesCount}/>
-                )}
+                {postsElements}
             </div>
             
         </div>
