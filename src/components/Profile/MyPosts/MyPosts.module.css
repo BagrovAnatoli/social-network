@@ -1,2 +1,11 @@
+.myposts_block {
+    padding: 10px;
+}
 
-  
+.block {
+    display: block;
+}
+
+.posts {
+    margin-top: 10px;
+}
