@@ -4,9 +4,17 @@
 }
 
 .item {
+    list-style: none;
+}
+
+.link, .active_link {
+    text-decoration: none;
+}
+
+.link {
     color: cornsilk;
 }
 
-.item.active {
+.active_link {
     color: gold;
 }
