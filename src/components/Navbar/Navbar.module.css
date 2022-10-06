@@ -3,6 +3,10 @@
     background-color: burlywood;
 }
 
+.nav_list {
+    padding: 10px 20px;
+}
+
 .item {
     list-style: none;
 }
@@ -17,4 +21,15 @@
 
 .active_link {
     color: gold;
+}
+
+.friends_block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friends {
+    display: flex;
+    gap: 10px;
 }
