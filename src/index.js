@@ -24,7 +24,6 @@ const posts = [
   {id: 2, message: "It's my first post", likesCount: 1000},
 ];
 
-
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

@@ -3,10 +3,9 @@ import Post from './Post/Post';
 
 const MyPosts = ({posts}) => {
 
-    const postsElements = posts
-        .map(({message, likesCount}) => 
+    const postsElements = posts.map(({message, likesCount}) => 
             <Post message={message} likesCount={likesCount}/>
-        )
+        );
 
     return (
         <div className={s.myposts_block}>

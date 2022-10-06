@@ -19,12 +19,12 @@ const  App = ({dialogs, messages, posts}) => {
           <Navbar />
           <div className="app-wrapper-content">
             <Routes>
-              <Route path='/profile/*' element={<Profile posts={posts}/>} />
+              <Route path='/profile/*' element={<Profile posts={posts} />} />
               <Route path='/dialogs/*' element={<Dialogs dialogs={dialogs} messages={messages} />} />
               <Route path='/news/*' element={<News />} />
               <Route path='/music/*' element={<Music />} />
               <Route path='/settings/*' element={<Settings />} />
-              <Route path='/*' element={<Profile />} />
+              <Route path='/*' element={<Profile posts={posts} />} />
             </Routes>
           </div>
         </div>
