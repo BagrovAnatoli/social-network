@@ -1,0 +1,19 @@
+.message {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+}
+
+.ava {
+    height: 30px;
+    border-radius: 50%;
+}
+
+.right {
+    justify-content: end;
+}
+
+.left {
+    justify-content: start;
+    flex-direction: row-reverse;
+}

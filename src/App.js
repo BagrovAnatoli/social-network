@@ -10,7 +10,7 @@ import Settings from './components/Settings/Settings';
 import ErrorBoundary from './components/ErrorBoundary';
 
 
-const  App = ({dialogs, messages, posts}) => {
+const  App = ({state}) => {
   return (
     <ErrorBoundary>
       <Router>
@@ -19,12 +19,12 @@ const  App = ({dialogs, messages, posts}) => {
           <Navbar />
           <div className="app-wrapper-content">
             <Routes>
-              <Route path='/profile/*' element={<Profile posts={posts} />} />
-              <Route path='/dialogs/*' element={<Dialogs dialogs={dialogs} messages={messages} />} />
+              <Route path='/profile/*' element={<Profile state={state.profilePage} />} />
+              <Route path='/dialogs/*' element={<Dialogs state={state.dialogsPage} users={state.users} />} />
               <Route path='/news/*' element={<News />} />
               <Route path='/music/*' element={<Music />} />
               <Route path='/settings/*' element={<Settings />} />
-              <Route path='/*' element={<Profile posts={posts} />} />
+              <Route path='/*' element={<Profile state={state.profilePage} />} />
             </Routes>
           </div>
         </div>

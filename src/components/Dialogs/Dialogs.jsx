@@ -2,13 +2,20 @@ import s from "./Dialogs.module.css";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 
-const Dialogs = ({dialogs, messages}) => {
+const getUserById = (users, id) => {
+    return users.find(u => u.id === id);
+}
 
-    const dialogsElements = dialogs
+const Dialogs = ({state, users}) => {
+
+    const dialogsElements = state.dialogs
         .map(({id, name}) => <DialogItem id={id} name={name}/>);
 
-    const messagesElements = messages
-        .map(({id, message}) => <Message id={id} message={message}/>);
+    const messagesElements = state.messages
+        .map(({id, message, author, userId}) => {
+            const avaUrl = getUserById(users, userId).ava;
+            return <Message id={id} message={message} author={author} avaUrl={avaUrl}/>
+    });
 
     return (
         <div className={s.dialogs}>
