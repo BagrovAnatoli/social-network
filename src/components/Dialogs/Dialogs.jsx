@@ -7,7 +7,7 @@ const getUserById = (users, id) => {
     return users.find(u => u.id === id);
 }
 
-const Dialogs = ({dialogsPage, users}) => {
+const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText}) => {
 
     const dialogsElements = dialogsPage.dialogs
         .map(({id, name}) => <DialogItem key={id} id={id} name={name}/>);
@@ -22,7 +22,13 @@ const Dialogs = ({dialogsPage, users}) => {
 
     const sendMessage = () => {
         const text = textareaRef.current.value;
-        alert(text);
+        addMessage();
+    }
+
+    const updateState = () => {
+        const newValue = textareaRef.current.value;
+        console.log(newValue);
+        updateNewMessageText(newValue);
     }
 
     return (
@@ -35,7 +41,12 @@ const Dialogs = ({dialogsPage, users}) => {
                     {messagesElements}
                 </div>
                 <div className={s.send_block}>
-                    <textarea ref={textareaRef} className={s.block + ' ' + s.textarea}></textarea>
+                    <textarea
+                        ref={textareaRef}
+                        className={s.block + ' ' + s.textarea}
+                        value={dialogsPage.newMessageText}
+                        onChange={updateState}    
+                    ></textarea>
                     <button onClick={sendMessage} className={s.block + ' ' + s.button}>Send</button>
                 </div>
             </div>

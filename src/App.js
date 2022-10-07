@@ -8,7 +8,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-const  App = ({state, addPost, updateNewPostText}) => {
+const  App = ({state, addPost, updateNewPostText, addMessage, updateNewMessageText}) => {
   return (
         <div className="app-wrapper">
           <Header />
@@ -16,7 +16,7 @@ const  App = ({state, addPost, updateNewPostText}) => {
           <div className="app-wrapper-content">
             <Routes>
               <Route path='/profile/*' element={<Profile profilePage={state.profilePage} addPost={addPost} updateNewPostText={updateNewPostText} />} />
-              <Route path='/dialogs/*' element={<Dialogs dialogsPage={state.dialogsPage} users={state.users} />} />
+              <Route path='/dialogs/*' element={<Dialogs dialogsPage={state.dialogsPage} users={state.users} addMessage={addMessage} updateNewMessageText={updateNewMessageText}/>} />
               <Route path='/news/*' element={<News />} />
               <Route path='/music/*' element={<Music />} />
               <Route path='/settings/*' element={<Settings />} />

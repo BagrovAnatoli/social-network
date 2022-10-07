@@ -22,6 +22,7 @@ const state = {
             {id: '2', message: 'How is you it-kamasutra?', author: 'I', userId: 1},
             {id: '3', message: 'Good', author: 'You', userId: 2},
         ],
+        newMessageText: 'hei',
     },
     users: [
         {id: 1, name: 'Anatoli', isFriend: false, ava: 'http://img1.gtimg.com/gamezone/pics/hv1/47/158/718/46728287.jpg'},
@@ -34,12 +35,12 @@ const state = {
     ],
 };
 
-const getLastPostId = (posts) => {
-    return posts[posts.length - 1].id;
+const getLastId = (objects) => {
+    return Number(objects[objects.length - 1].id);
 }
 
 export const addPost = () => {
-    const lastPostId = getLastPostId(state.profilePage.posts);
+    const lastPostId = getLastId(state.profilePage.posts);
     const newPost = {
         id: (lastPostId + 1),
         message: state.profilePage.newPostText,
@@ -47,12 +48,30 @@ export const addPost = () => {
     };
     state.profilePage.posts.push(newPost);
     state.profilePage.newPostText = '';
-    rerenderEntireTree(state, addPost, updateNewPostText);
+    rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
 };
 
 export const updateNewPostText = (newValue) => {
     state.profilePage.newPostText = newValue;
-    rerenderEntireTree(state, addPost, updateNewPostText);
+    rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
+};
+
+export const addMessage = () => {
+    const lastMessageId = getLastId(state.dialogsPage.messages);
+    const newMessage = {
+        id: (lastMessageId + 1),
+        message: state.dialogsPage.newMessageText,
+        author: 'I',
+        userId: 1,
+    };
+    state.dialogsPage.messages.push(newMessage);
+    state.dialogsPage.newMessageText = '';
+    rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
+};
+
+export const updateNewMessageText = (newValue) => {
+    state.dialogsPage.newMessageText = newValue;
+    rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
 };
 
 export default state;
