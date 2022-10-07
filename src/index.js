@@ -1,25 +1,35 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import ErrorBoundary from './components/ErrorBoundary';
+import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
-// import App from './App';
+import App from './App';
 // import reportWebVitals from './reportWebVitals';
-import state from './redux/state';
+import state, { subscribe } from './redux/state';
 import { addPost, updateNewPostText, addMessage, updateNewMessageText } from './redux/state';
-// import ErrorBoundary from './components/ErrorBoundary';
-// import { BrowserRouter as Router } from 'react-router-dom';
-import rerenderEntireTree from './render';
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 
-
-
-
+const rerenderEntireTree = () => {
+    root.render(
+      <React.StrictMode>
+        <ErrorBoundary>
+          <Router>
+            <App state={state} addPost={addPost} updateNewPostText={updateNewPostText} addMessage={addMessage} updateNewMessageText={updateNewMessageText}/>
+          </Router>
+        </ErrorBoundary>
+      </React.StrictMode>
+    );
+};
 
 // const addPostRerender = (message) => {
 //   addPost(message);
 //   rerenderEntireTree();
 // }
 
-rerenderEntireTree(state, addPost, updateNewPostText, addMessage, updateNewMessageText);
+rerenderEntireTree();
+
+subscribe(rerenderEntireTree);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
