@@ -2,7 +2,7 @@ import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = ({posts, newPostText, addPost, addChangeText}) => {
+const MyPosts = ({posts, newPostText, addPost, updateNewPostText}) => {
 
     const postsElements = posts.map(({message, likesCount, id}) => 
             <Post key={id} message={message} likesCount={likesCount}/>
@@ -11,23 +11,21 @@ const MyPosts = ({posts, newPostText, addPost, addChangeText}) => {
     const newPostElement = React.createRef();
 
     const addPostToState = () => {
-        const text = newPostElement.current.value;
-        newPostElement.current.value = '';
-        addPost(text);
+        addPost();
+        updateNewPostText('');
     }
 
-    const addChangeToState = () => {
+    const updateState = () => {
         const newValue = newPostElement.current.value;
         console.log(newValue);
-        addChangeText(newValue);
-
+        updateNewPostText(newValue);
     }
 
     return (
         <div className={s.myposts_block}>
             <h3>my posts</h3>
             <div>
-                <textarea ref={newPostElement} className={s.block} onChange={addChangeToState} value={newPostText}/>
+                <textarea ref={newPostElement} className={s.block} onChange={updateState} value={newPostText}/>
                 <button onClick={ addPostToState } className={s.block}>Add post</button>
             </div>
             <div className={s.posts}>

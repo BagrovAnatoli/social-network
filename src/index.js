@@ -4,7 +4,7 @@ import './index.css';
 // import App from './App';
 // import reportWebVitals from './reportWebVitals';
 import state from './redux/state';
-import { addPost, addChangeText } from './redux/state';
+import { addPost, updateNewPostText } from './redux/state';
 // import ErrorBoundary from './components/ErrorBoundary';
 // import { BrowserRouter as Router } from 'react-router-dom';
 import rerenderEntireTree from './render';
@@ -19,7 +19,7 @@ import rerenderEntireTree from './render';
 //   rerenderEntireTree();
 // }
 
-rerenderEntireTree(state, addPost, addChangeText);
+rerenderEntireTree(state, addPost, updateNewPostText);
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

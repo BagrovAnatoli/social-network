@@ -7,12 +7,12 @@ import App from './App';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const rerenderEntireTree = (state, addPost, addChangeText) => {
+const rerenderEntireTree = (state, addPost, updateNewPostText) => {
     root.render(
       <React.StrictMode>
         <ErrorBoundary>
           <Router>
-            <App state={state} addPost={addPost} addChangeText={addChangeText}/>
+            <App state={state} addPost={addPost} updateNewPostText={updateNewPostText}/>
           </Router>
         </ErrorBoundary>
       </React.StrictMode>

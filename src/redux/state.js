@@ -38,20 +38,20 @@ const getLastPostId = (posts) => {
     return posts[posts.length - 1].id;
 }
 
-export const addPost = (postMessage) => {
+export const addPost = () => {
     const lastPostId = getLastPostId(state.profilePage.posts);
     const newPost = {
         id: (lastPostId + 1),
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0,
     };
     state.profilePage.posts.push(newPost);
-    rerenderEntireTree(state, addPost, addChangeText);
+    rerenderEntireTree(state, addPost, updateNewPostText);
 };
 
-export const addChangeText = (newValue) => {
+export const updateNewPostText = (newValue) => {
     state.profilePage.newPostText = newValue;
-    rerenderEntireTree(state, addPost, addChangeText);
+    rerenderEntireTree(state, addPost, updateNewPostText);
 };
 
 export default state;
