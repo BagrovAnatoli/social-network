@@ -2,11 +2,11 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from './ProfileInfo/ProfileInfo'
 // import s from './Profile.module.css';
 
-const Profile = ({state, addPost, addChangeText}) => {
+const Profile = ({profilePage, addPost, addChangeText}) => {
     return (
         <>
             <ProfileInfo />
-            <MyPosts posts={state.posts} addPost={addPost} newPostText={state.newPostText} addChangeText={addChangeText}/>
+            <MyPosts posts={profilePage.posts} addPost={addPost} newPostText={profilePage.newPostText} addChangeText={addChangeText}/>
         </>
     );
 }

@@ -15,12 +15,12 @@ const  App = ({state, addPost, addChangeText}) => {
           <Navbar users={state.users}/>
           <div className="app-wrapper-content">
             <Routes>
-              <Route path='/profile/*' element={<Profile state={state.profilePage} addPost={addPost} addChangeText={addChangeText} />} />
-              <Route path='/dialogs/*' element={<Dialogs state={state.dialogsPage} users={state.users} />} />
+              <Route path='/profile/*' element={<Profile profilePage={state.profilePage} addPost={addPost} addChangeText={addChangeText} />} />
+              <Route path='/dialogs/*' element={<Dialogs dialogsPage={state.dialogsPage} users={state.users} />} />
               <Route path='/news/*' element={<News />} />
               <Route path='/music/*' element={<Music />} />
               <Route path='/settings/*' element={<Settings />} />
-              <Route path='/*' element={<Profile state={state.profilePage} addPost={addPost} addChangeText={addChangeText}/>} />
+              <Route path='/*' element={<Profile profilePage={state.profilePage} addPost={addPost} addChangeText={addChangeText}/>} />
             </Routes>
           </div>
         </div>

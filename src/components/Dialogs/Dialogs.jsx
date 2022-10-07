@@ -7,15 +7,15 @@ const getUserById = (users, id) => {
     return users.find(u => u.id === id);
 }
 
-const Dialogs = ({state, users}) => {
+const Dialogs = ({dialogsPage, users}) => {
 
-    const dialogsElements = state.dialogs
-        .map(({id, name}) => <DialogItem id={id} name={name}/>);
+    const dialogsElements = dialogsPage.dialogs
+        .map(({id, name}) => <DialogItem key={id} id={id} name={name}/>);
 
-    const messagesElements = state.messages
+    const messagesElements = dialogsPage.messages
         .map(({id, message, author, userId}) => {
             const avaUrl = getUserById(users, userId).ava;
-            return <Message id={id} message={message} author={author} avaUrl={avaUrl}/>
+            return <Message key={id} id={id} message={message} author={author} avaUrl={avaUrl}/>
     });
 
     const textareaRef = React.createRef();

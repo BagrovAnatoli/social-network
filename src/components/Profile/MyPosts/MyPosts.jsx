@@ -16,9 +16,9 @@ const MyPosts = ({posts, newPostText, addPost, addChangeText}) => {
         addPost(text);
     }
 
-    const addChangeToState = (e) => {
-        const newValue = e.target.value;
-        console.log(e.target.value);
+    const addChangeToState = () => {
+        const newValue = newPostElement.current.value;
+        console.log(newValue);
         addChangeText(newValue);
 
     }
