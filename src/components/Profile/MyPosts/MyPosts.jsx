@@ -12,7 +12,6 @@ const MyPosts = ({posts, newPostText, addPost, updateNewPostText}) => {
 
     const addPostToState = () => {
         addPost();
-        updateNewPostText('');
     }
 
     const updateState = () => {
