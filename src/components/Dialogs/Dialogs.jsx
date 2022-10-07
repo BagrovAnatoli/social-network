@@ -1,3 +1,4 @@
+import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -17,13 +18,26 @@ const Dialogs = ({state, users}) => {
             return <Message id={id} message={message} author={author} avaUrl={avaUrl}/>
     });
 
+    const textareaRef = React.createRef();
+
+    const sendMessage = () => {
+        const text = textareaRef.current.value;
+        alert(text);
+    }
+
     return (
         <div className={s.dialogs}>
             <div className={s.dialogs_items}>                   
                 {dialogsElements}
             </div>
-            <div className={s.messages}>
-                {messagesElements}
+            <div className={s.messages_block}>
+                <div>
+                    {messagesElements}
+                </div>
+                <div className={s.send_block}>
+                    <textarea ref={textareaRef} className={s.block + ' ' + s.textarea}></textarea>
+                    <button onClick={sendMessage} className={s.block + ' ' + s.button}>Send</button>
+                </div>
             </div>
         </div>
     );

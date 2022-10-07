@@ -15,6 +15,22 @@
     font-weight: bold;
 }
 
-.messages {
- padding: 10px;
+.messages_block {
+    padding: 10px;
+}
+
+.send_block {
+    text-align: end;
+}
+
+.block {
+    display: block;
+}
+
+.textarea {
+    width: 100%;
+}
+
+.button {
+    margin-left: auto;
 }
