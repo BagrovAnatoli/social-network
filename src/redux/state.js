@@ -31,4 +31,18 @@ const state = {
     ],
 };
 
+const getLastPostId = (posts) => {
+    return posts[posts.length - 1].id;
+}
+
+export const addPost = (postMessage) => {
+    const lastPostId = getLastPostId(state.profilePage.posts);
+    const newPost = {
+        id: (lastPostId + 1),
+        message: postMessage,
+        likesCount: 0,
+    };
+    state.profilePage.posts.push(newPost);
+}
+
 export default state;
