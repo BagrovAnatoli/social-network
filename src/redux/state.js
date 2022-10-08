@@ -33,14 +33,19 @@ let store = {
             {id: 7, name: 'Olga', isFriend: false, ava: 'https://img0.liveinternet.ru/images/attach/c/1/55/425/55425901_1266623507_wing6ce.jpg'},
         ],
     },
-    getState() {
-        return this._state;
-    },
     _callSubscriber() {},
     _getLastId(objects) {
         return Number(objects[objects.length - 1].id);
     },
-    addPost() {
+
+    getState() {
+        return this._state;
+    },
+    subscribe(observer) {
+        this._callSubscriber = observer;
+    },
+    
+    _addPost() {
         const lastPostId = this._getLastId(this._state.profilePage.posts);
         const newPost = {
             id: (lastPostId + 1),
@@ -51,11 +56,11 @@ let store = {
         this._state.profilePage.newPostText = '';
         this._callSubscriber();
     },
-    updateNewPostText(newValue) {
+    _updateNewPostText(newValue) {
         this._state.profilePage.newPostText = newValue;
         this._callSubscriber();
     },
-    addMessage() {
+    _addMessage() {
         const lastMessageId = this._getLastId(this._state.dialogsPage.messages);
         const newMessage = {
             id: (lastMessageId + 1),
@@ -67,12 +72,22 @@ let store = {
         this._state.dialogsPage.newMessageText = '';
         this._callSubscriber();
     },
-    updateNewMessageText(newValue) {
+    _updateNewMessageText(newValue) {
         this._state.dialogsPage.newMessageText = newValue;
         this._callSubscriber();
     },
-    subscribe(observer) {
-        this._callSubscriber = observer;
+    
+
+    dispatch(action) { // { type: 'ADD-POST'}
+        if (action.type === 'ADD-POST') {
+            this._addPost();
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._updateNewPostText(action.newText);
+        } else if (action.type === 'ADD-MESSAGE') {
+            this._addMessage();
+        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
+            this._updateNewMessageText(action.newText);
+        }
     },
 };
 

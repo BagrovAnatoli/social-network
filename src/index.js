@@ -14,7 +14,7 @@ const rerenderEntireTree = () => {
       <React.StrictMode>
         <ErrorBoundary>
           <Router>
-            <App state={store.getState()} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} addMessage={store.addMessage.bind(store)} updateNewMessageText={store.updateNewMessageText.bind(store)}/>
+            <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
           </Router>
         </ErrorBoundary>
       </React.StrictMode>
