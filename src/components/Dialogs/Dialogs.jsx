@@ -2,6 +2,7 @@ import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { addMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/state';
 
 const getUserById = (users, id) => {
     return users.find(u => u.id === id);
@@ -22,18 +23,13 @@ const Dialogs = ({dialogsPage, users, dispatch }) => {
 
     const sendMessage = () => {
         const text = textareaRef.current.value;
-        dispatch({
-            type: 'ADD-MESSAGE',
-        });
+        dispatch(addMessageActionCreator());
     }
 
     const updateState = () => {
         const newValue = textareaRef.current.value;
         console.log(newValue);
-        dispatch({
-            type: 'UPDATE-NEW-MESSAGE-TEXT',
-            newText: newValue,
-        });
+        dispatch(updateNewMessageTextActionCreator(newValue));
     }
 
     return (
