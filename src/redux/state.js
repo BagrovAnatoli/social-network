@@ -26,7 +26,7 @@ let store = {
                 {id: '2', message: 'How is you it-kamasutra?', author: 'I', userId: 1},
                 {id: '3', message: 'Good', author: 'You', userId: 2},
             ],
-            newMessageText: 'hei',
+            newMessageText: '',
         },
         users: [
             {id: 1, name: 'Anatoli', isFriend: false, ava: 'http://img1.gtimg.com/gamezone/pics/hv1/47/158/718/46728287.jpg'},
@@ -96,20 +96,20 @@ let store = {
     },
 };
 
-export const addPostActionCreator = () => ({
+export const addPostCreator = () => ({
     type: ADD_POST,
 });
 
-export const updateNewPostTextActionCreator = (newValue) => ({
+export const updateNewPostTextCreator = (newValue) => ({
     type: UPDATE_NEW_POST_TEXT,
     newText: newValue,
 });
 
-export const addMessageActionCreator = () => ({
+export const addMessageCreator = () => ({
     type: ADD_MESSAGE,
 });
 
-export const updateNewMessageTextActionCreator = (newValue) => ({
+export const updateNewMessageTextCreator = (newValue) => ({
     type: UPDATE_NEW_MESSAGE_TEXT,
     newText: newValue,
 });
