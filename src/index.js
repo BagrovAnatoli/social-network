@@ -4,7 +4,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import store from './redux/store';
+import store from './redux/redux-store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
