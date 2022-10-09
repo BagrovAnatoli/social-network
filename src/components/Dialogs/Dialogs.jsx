@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { addMessageCreator, updateNewMessageTextCreator } from '../../redux/state';
+import { addMessageCreator, updateNewMessageTextCreator } from '../../redux/dialogs-reducer';
 
 const getUserById = (users, id) => {
     return users.find(u => u.id === id);
