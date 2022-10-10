@@ -13,7 +13,7 @@ const rerenderEntireTree = () => {
       <React.StrictMode>
         <ErrorBoundary>
           <Router>
-            <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
+            <App store={store} state={store.getState()} dispatch={store.dispatch.bind(store)} />
           </Router>
         </ErrorBoundary>
       </React.StrictMode>
