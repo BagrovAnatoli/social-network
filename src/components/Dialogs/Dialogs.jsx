@@ -2,13 +2,12 @@ import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
-import { addMessageCreator, updateNewMessageTextCreator } from '../../redux/dialogs-reducer';
 
 const getUserById = (users, id) => {
     return users.find(u => u.id === id);
 }
 
-const Dialogs = ({dialogsPage, users, dispatch }) => {
+const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText }) => {
 
     const dialogsElements = dialogsPage.dialogs
         .map(({id, name}) => <DialogItem key={id} id={id} name={name}/>);
@@ -22,14 +21,14 @@ const Dialogs = ({dialogsPage, users, dispatch }) => {
     const textareaRef = React.createRef();
 
     const onSendMessageClick = () => {
-        dispatch(addMessageCreator());
+        addMessage();
     }
 
     const onNewMessageChange = (e) => {
         // const newValue = textareaRef.current.value;
         const newValue = e.target.value;
         console.log(newValue);
-        dispatch(updateNewMessageTextCreator(newValue));
+        updateNewMessageText(newValue);
     }
 
     return (
