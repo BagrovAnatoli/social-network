@@ -7,20 +7,24 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import StoreContext from './StoreContext';
 
-const  App = ({store, state, dispatch}) => {
+const  App = () => {
   return (
         <div className="app-wrapper">
           <Header />
-          <Navbar users={state.users}/>
+          <StoreContext.Consumer>{
+            (store) => (<Navbar users={store.getState().users}/>)  
+          }
+          </StoreContext.Consumer>
           <div className="app-wrapper-content">
             <Routes>
-              <Route path='/profile/*' element={<Profile store={store} />} />
-              <Route path='/dialogs/*' element={<DialogsContainer store={store} />} />
+              <Route path='/profile/*' element={<Profile />} />
+              <Route path='/dialogs/*' element={<DialogsContainer />} />
               <Route path='/news/*' element={<News />} />
               <Route path='/music/*' element={<Music />} />
               <Route path='/settings/*' element={<Settings />} />
-              <Route path='/*' element={<Profile store={store} />} />
+              <Route path='/*' element={<Profile />} />
             </Routes>
           </div>
         </div>
