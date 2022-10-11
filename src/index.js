@@ -5,7 +5,8 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import store from './redux/redux-store';
-import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -14,9 +15,9 @@ const rerenderEntireTree = () => {
       <React.StrictMode>
         <ErrorBoundary>
           <Router>
-            <StoreContext.Provider value={store}>
+            <Provider store={store}>
               <App />
-            </StoreContext.Provider>
+            </Provider>
           </Router>
         </ErrorBoundary>
       </React.StrictMode>

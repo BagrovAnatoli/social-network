@@ -1,22 +1,18 @@
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Header from './components/Header/Header';
-import Navbar from './components/Navbar/Navbar';
+import NavbarContainer from './components/Navbar/NavbarContainer';
 import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
-import StoreContext from './StoreContext';
 
 const  App = () => {
   return (
         <div className="app-wrapper">
           <Header />
-          <StoreContext.Consumer>{
-            (store) => (<Navbar users={store.getState().users}/>)  
-          }
-          </StoreContext.Consumer>
+          <NavbarContainer />
           <div className="app-wrapper-content">
             <Routes>
               <Route path='/profile/*' element={<Profile />} />
