@@ -10,20 +10,14 @@ import { Provider } from 'react-redux';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-const rerenderEntireTree = () => {
-    root.render(
-      <React.StrictMode>
-        <ErrorBoundary>
-          <Router>
-            <Provider store={store}>
-              <App />
-            </Provider>
-          </Router>
-        </ErrorBoundary>
-      </React.StrictMode>
-    );
-};
-
-rerenderEntireTree();
-
-store.subscribe(rerenderEntireTree);
+root.render(
+  <React.StrictMode>
+    <ErrorBoundary>
+      <Router>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </Router>
+    </ErrorBoundary>
+  </React.StrictMode>
+);
