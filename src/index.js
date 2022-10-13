@@ -7,11 +7,13 @@ import App from './App';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
 
+window.store = store;
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ErrorBoundary>
       <Router>
         <Provider store={store}>
@@ -19,5 +21,5 @@ root.render(
         </Provider>
       </Router>
     </ErrorBoundary>
-  </React.StrictMode>
+  // </React.StrictMode>
 );
