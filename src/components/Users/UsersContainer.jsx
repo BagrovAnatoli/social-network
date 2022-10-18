@@ -1,12 +1,15 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC } from '../../redux/users-reducer-2';
+import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, toggleIsFetchingAC } from '../../redux/users-reducer-2';
 import Users from './Users';
+import Loader from '../Loader/Loader';
 
 class UsersContainer extends React.Component {
     componentDidMount() {
+        this.props.toggleIsFetching(true);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`).then(response => {
+            this.props.toggleIsFetching(false);
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
         });
@@ -18,15 +21,19 @@ class UsersContainer extends React.Component {
     }
 
     setCurrentPageHandler = (p) => {
+        this.props.toggleIsFetching(true);
         this.props.setCurrentPage(p);
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}`).then(response => {
+            this.props.toggleIsFetching(false);
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
         });
     };
 
     render() {
-        return <Users
+        return <>
+        {this.props.isFetching ? <Loader /> : null}
+        <Users
             users={this.props.users}
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
@@ -35,7 +42,8 @@ class UsersContainer extends React.Component {
             unfollow={this.props.unfollow}
             setTotalUsersCount={this.props.setTotalUsersCount}
             setCurrentPageHandler={this.setCurrentPageHandler}
-        /> 
+        />
+        </>
     }
 }
 
@@ -45,6 +53,7 @@ const mapStateToProps = (state) => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching,
     };
 };
 
@@ -55,6 +64,7 @@ const mapDispatchToProps = (dispatch) => {
         setUsers: (users) => dispatch(setUsersAC(users)),
         setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
         setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
+        toggleIsFetching: (isFetching) => dispatch(toggleIsFetchingAC(isFetching)),
     };
 };
 
