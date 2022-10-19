@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, setCurrentPageAC, setTotalUsersCountAC, toggleIsFetchingAC } from '../../redux/users-reducer-2';
+import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching } from '../../redux/users-reducer-2';
 import Users from './Users';
 import Loader from '../Loader/Loader';
 
@@ -13,11 +13,6 @@ class UsersContainer extends React.Component {
             this.props.setUsers(response.data.items);
             this.props.setTotalUsersCount(response.data.totalCount);
         });
-        // setTimeout(()=>{
-        //     const data = JSON.parse(mockUsers);
-        //     this.props.setUsers(data.items);
-        //     this.props.setTotalUsersCount(data.totalCount);
-        // },2000);
     }
 
     setCurrentPageHandler = (p) => {
@@ -57,15 +52,13 @@ const mapStateToProps = (state) => {
     };
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (id) => dispatch(followAC(id)),
-        unfollow: (id) => dispatch(unfollowAC(id)),
-        setUsers: (users) => dispatch(setUsersAC(users)),
-        setCurrentPage: (page) => dispatch(setCurrentPageAC(page)),
-        setTotalUsersCount: (count) => dispatch(setTotalUsersCountAC(count)),
-        toggleIsFetching: (isFetching) => dispatch(toggleIsFetchingAC(isFetching)),
-    };
+const mapDispatchToProps = {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
