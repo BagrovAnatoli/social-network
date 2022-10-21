@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import AvaMini from '../AvaMini/AvaMini';
 
 const Header = (props) => {
-    debugger;
     return (
         <header className={s.header}>
             <img className={s.logo} src="https://cs10.pikabu.ru/post_img/2020/09/05/9/159931529822441155.jpg" alt="angel"/>
