@@ -1,7 +1,6 @@
 import React from 'react';
 import s from './Users.module.css';
-import userPhoto from '../../assets/images/user.png';
-import { Link } from 'react-router-dom';
+import AvaMini from './../AvaMini/AvaMini';
 
 const Users = (props) => {
     
@@ -25,15 +24,7 @@ const Users = (props) => {
             })}
             {props.users.map(u => <div key={u.id}>
                 <span>
-                    <div>
-                        <Link to={`/profile/${u.id}`}>
-                            <img
-                                className={s.users_photo}
-                                alt="ava"
-                                src={u.photos.small != null ? u.photos.small : userPhoto}
-                            />
-                        </Link>
-                    </div>
+                    <AvaMini id={u.id} photoSmall={u.photos.small} />
                     <div>
                         {u.followed
                             ? <button onClick={()=>(props.unfollow(u.id))}>Unfollow</button>
@@ -45,10 +36,6 @@ const Users = (props) => {
                     <span>
                         <div>{u.name}</div>
                         <div>{u.status}</div>
-                    </span>
-                    <span>
-                        {/* <div>{u.location.country}</div> */}
-                        {/* <div>{u.location.city}</div> */}
                     </span>
                 </span>
             </div>)}

@@ -10,6 +10,9 @@
 .login_block {
   float: right;
   color: white;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .login_block a {

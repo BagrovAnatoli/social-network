@@ -2,7 +2,7 @@ import React from  'react';
 import Header from  './Header';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setUserData } from '../../redux/auth-reducer';
+import { setUserData, setUserPhotoSmall } from '../../redux/auth-reducer';
 
 class HeaderContainer extends React.Component {
     componentDidMount() {
@@ -14,6 +14,9 @@ class HeaderContainer extends React.Component {
             if (response.data.resultCode === 0) {
                 const {id, email, login} = response.data.data
                 this.props.setUserData(id, email, login);
+                axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`).then(response => {
+                    this.props.setUserPhotoSmall(response.data.photos.small);
+                });
             }
             
         });
