@@ -1,9 +1,10 @@
 import s from './ProfileInfo.module.css';
 import SocialButtons from '../SocialButtons/SocialButtons';
+import Loader from '../../Loader/Loader';
 
 const ProfileInfo = (props) => {
     const profile = props.profile;
-    if (!profile) return null;
+    if (!profile) return <Loader />;
 
     const contacts = profile.contacts;
     return (
