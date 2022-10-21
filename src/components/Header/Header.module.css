@@ -1,9 +1,17 @@
 .header {
-    grid-area: h;
-    background-color: green;
-  }
+  grid-area: h;
+  background-color: green;
+}
 
 .logo {
   height: 100%;
 }
-  
+
+.login_block {
+  float: right;
+  color: white;
+}
+
+.login_block a {
+  color: white;
+}
