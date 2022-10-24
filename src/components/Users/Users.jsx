@@ -30,23 +30,28 @@ const Users = (props) => {
                     <div>
                         {u.followed
                             ? <button onClick={()=>{
-                                
+                                props.toggleFollowingProgress(true);
                                 usersAPI.unfollow(u.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.unfollow(u.id);
+                                        props.toggleFollowingProgress(false);
                                     }
                                 });
                             
-                            }}>Unfollow</button>
+                            }}
+                            disabled={props.followingInProgress}
+                            >Unfollow</button>
                             : <button onClick={()=>{
-                                
+                                props.toggleFollowingProgress(true);
                                 usersAPI.follow(u.id).then(data => {
                                     if (data.resultCode === 0) {
                                         props.follow(u.id);
+                                        props.toggleFollowingProgress(false);
                                     }
                                 });
                             
-                            }}>Follow</button>
+                            }}
+                            disabled={props.followingInProgress}>Follow</button>
                         }
                     </div>
                 </span>
