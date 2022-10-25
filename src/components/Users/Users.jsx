@@ -29,29 +29,32 @@ const Users = (props) => {
                     <AvaMini id={u.id} photoSmall={u.photos.small} />
                     <div>
                         {u.followed
-                            ? <button onClick={()=>{
-                                props.toggleFollowingProgress(true);
-                                usersAPI.unfollow(u.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.unfollow(u.id);
-                                        props.toggleFollowingProgress(false);
+                            ? <button
+                                disabled={(()=>props.followingInProgress.some(id => id===u.id))()}
+                                onClick={()=>{
+                                    props.toggleFollowingProgress(true, u.id);
+                                    usersAPI.unfollow(u.id).then(data => {
+                                        if (data.resultCode === 0) {
+                                            props.unfollow(u.id);
+                                            props.toggleFollowingProgress(false, u.id);
                                     }
                                 });
                             
                             }}
-                            disabled={props.followingInProgress}
                             >Unfollow</button>
-                            : <button onClick={()=>{
-                                props.toggleFollowingProgress(true);
-                                usersAPI.follow(u.id).then(data => {
-                                    if (data.resultCode === 0) {
-                                        props.follow(u.id);
-                                        props.toggleFollowingProgress(false);
+                            : <button
+                                disabled={(()=>props.followingInProgress.some(id => id===u.id))()}
+                                onClick={()=>{
+                                    props.toggleFollowingProgress(true, u.id);
+                                    usersAPI.follow(u.id).then(data => {
+                                        if (data.resultCode === 0) {
+                                            props.follow(u.id);
+                                            props.toggleFollowingProgress(false, u.id);
                                     }
                                 });
                             
                             }}
-                            disabled={props.followingInProgress}>Follow</button>
+                            >Follow</button>
                         }
                     </div>
                 </span>
