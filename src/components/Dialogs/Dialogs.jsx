@@ -2,12 +2,13 @@ import React from 'react';
 import s from "./Dialogs.module.css";
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { Navigate } from 'react-router-dom';
 
 const getUserById = (users, id) => {
     return users.find(u => u.id === id);
 }
 
-const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText }) => {
+const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText, isAuth }) => {
 
     const dialogsElements = dialogsPage.dialogs
         .map(({id, name}) => <DialogItem key={id} id={id} name={name}/>);
@@ -30,6 +31,10 @@ const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText }) => {
         console.log(newValue);
         updateNewMessageText(newValue);
     }
+
+    if(!isAuth) {
+        return <Navigate replace to='/login'/>
+    };
 
     return (
         <div className={s.dialogs}>
