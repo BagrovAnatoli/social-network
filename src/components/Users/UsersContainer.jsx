@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { followThunkCreator, unfollowThunkCreator, setCurrentPage, getUsers } from '../../redux/users-reducer-2';
 import Users from './Users';
 import Loader from '../Loader/Loader';
@@ -52,4 +53,7 @@ const mapDispatchToProps = {
     getUsers
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(UsersContainer));
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),    
+    withAuthRedirect
+)(UsersContainer);
