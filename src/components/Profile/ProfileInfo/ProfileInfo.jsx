@@ -1,6 +1,7 @@
 import s from './ProfileInfo.module.css';
 import SocialButtons from '../SocialButtons/SocialButtons';
 import Loader from '../../Loader/Loader';
+import ProfileStatus from './ProfileStatus';
 
 const ProfileInfo = (props) => {
     const profile = props.profile;
@@ -9,8 +10,9 @@ const ProfileInfo = (props) => {
     const contacts = profile.contacts;
     return (
         <div className={s.info_container}>
-            <div className={s.content__img}></div>
+            {/* <div className={s.content__img}></div> */}
             <div className={s.ava_wrapper}><img className={s.ava} alt="ava" src={profile.photos.large} /></div>
+            <ProfileStatus status="Hello, friend"/>
             <div className={s.description_block} >
                 <div>Обо мне: {profile.aboutMe}</div>
                 {profile.lookingForAJob && <div>Ищу работу</div>}
