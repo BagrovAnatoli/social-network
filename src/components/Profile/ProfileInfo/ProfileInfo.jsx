@@ -12,7 +12,7 @@ const ProfileInfo = (props) => {
         <div className={s.info_container}>
             {/* <div className={s.content__img}></div> */}
             <div className={s.ava_wrapper}><img className={s.ava} alt="ava" src={profile.photos.large} /></div>
-            <ProfileStatus status="Hello, friend"/>
+            <ProfileStatus status={props.profileStatus} updateStatus={props.updateStatus}/>
             <div className={s.description_block} >
                 <div>Обо мне: {profile.aboutMe}</div>
                 {profile.lookingForAJob && <div>Ищу работу</div>}
