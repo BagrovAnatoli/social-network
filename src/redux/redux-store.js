@@ -1,4 +1,5 @@
 import {  applyMiddleware, combineReducers, legacy_createStore as createStore} from "redux";
+import { reducer as formReducer } from 'redux-form'
 import profileReducer from './profile-reducer';
 import dialogsReducer from './dialogs-reducer';
 import usersReducer from './users-reducer';
@@ -12,6 +13,7 @@ const reducers = combineReducers({
     users: usersReducer,
     usersPage: usersReducer2,
     auth: authReducer,
+    form: formReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));
