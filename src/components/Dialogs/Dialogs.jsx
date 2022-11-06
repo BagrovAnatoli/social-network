@@ -37,21 +37,9 @@ const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText}) => {
             return <Message key={id} id={id} message={message} author={author} avaUrl={avaUrl}/>
     });
 
-    // const textareaRef = React.createRef();
-
-    // const onSendMessageClick = () => {
-    //     addMessage();
-    // }
-
-    // const onNewMessageChange = (e) => {
-    //     // const newValue = textareaRef.current.value;
-    //     const newValue = e.target.value;
-    //     console.log(newValue);
-    //     updateNewMessageText(newValue);
-    // }
-
     const onSubmit = (formData) => {
         console.log(formData);
+        addMessage(formData.myMessage);
     }
 
     return (
@@ -63,16 +51,6 @@ const Dialogs = ({dialogsPage, users, addMessage, updateNewMessageText}) => {
                 <div>
                     {messagesElements}
                 </div>
-                {/* <div className={s.send_block}>
-                    <textarea
-                        ref={textareaRef}
-                        className={s.block + ' ' + s.textarea}
-                        value={dialogsPage.newMessageText}
-                        placeholder="Enter You Message"
-                        onChange={onNewMessageChange}    
-                    ></textarea>
-                    <button onClick={onSendMessageClick} className={s.block + ' ' + s.button}>Send</button>
-                </div> */}
                 <div className={s.send_block}>
                     <DialogReduxForm onSubmit={onSubmit}/>
                 </div>

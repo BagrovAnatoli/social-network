@@ -1,5 +1,4 @@
 const ADD_MESSAGE = 'ADD-MESSAGE';
-const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
 
 const getLastId = (objects) => {
     return Number(objects[objects.length - 1].id);
@@ -19,7 +18,6 @@ const initialState = {
         {id: '2', message: 'How is you it-kamasutra?', author: 'I', userId: 1},
         {id: '3', message: 'Good', author: 'You', userId: 2},
     ],
-    newMessageText: '',
 };
 
 const dialogsReducer = (state = initialState, action) => {
@@ -28,7 +26,7 @@ const dialogsReducer = (state = initialState, action) => {
             const lastMessageId = getLastId(state.messages);
             const newMessage = {
                 id: (lastMessageId + 1),
-                message: state.newMessageText,
+                message: action.newMessageText,
                 author: 'I',
                 userId: 1,
             };
@@ -37,25 +35,15 @@ const dialogsReducer = (state = initialState, action) => {
             return {
                 ...state,
                 messages: [...state.messages, newMessage],
-                newMessageText: '',
-            };
-        case UPDATE_NEW_MESSAGE_TEXT:
-            // state.newMessageText = action.newText;
-            return {
-                ...state,
-                newMessageText: action.newText,
             };
         default:
             return state;
     }
 }
 
-export const addMessageCreator = () => ({
+export const addMessageCreator = (newMessageText) => ({
     type: ADD_MESSAGE,
+    newMessageText,
 });
 
-export const updateNewMessageTextCreator = (newValue) => ({
-    type: UPDATE_NEW_MESSAGE_TEXT,
-    newText: newValue,
-});
 export default dialogsReducer;

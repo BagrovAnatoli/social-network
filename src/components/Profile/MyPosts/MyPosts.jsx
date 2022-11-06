@@ -21,7 +21,7 @@ const PostReduxForm = reduxForm({
     form: 'post',
   })(PostForm)
 
-const MyPosts = ({ posts, newPostText, addPost, updateNewPostText }) => {
+const MyPosts = ({ posts, addPost }) => {
 
     const postsElements = posts.map(({message, likesCount, id}) => 
             <Post key={id} message={message} likesCount={likesCount}/>
@@ -38,6 +38,7 @@ const MyPosts = ({ posts, newPostText, addPost, updateNewPostText }) => {
 
     const onSubmit = (formData) => {
         console.log(formData);
+        addPost(formData.newPost);
     }
 
     return (
