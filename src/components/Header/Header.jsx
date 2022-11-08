@@ -9,7 +9,11 @@ const Header = (props) => {
 
             <div className={s.login_block}>
                 {props.isAuth
-                ? <><AvaMini id={props.id} photoSmall={props.photoSmall}/> {props.login}</>
+                ? <>
+                    <AvaMini id={props.id} photoSmall={props.photoSmall}/>
+                     {props.login} - 
+                     <button onClick={props.logout}>Logout</button>
+                </>
                 : <Link to="/login">Login</Link>
             }
             </div>

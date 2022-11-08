@@ -3,6 +3,7 @@ import { required } from '../../utils/validators/validators';
 import { Input } from '../common/FormsControls/FormsControls';
 import { connect } from 'react-redux';
 import { login } from '../../redux/auth-reducer';
+import { Navigate } from 'react-router-dom';
 
 const LoginForm = (props) => {
     return (
@@ -32,6 +33,8 @@ const Login = (props) => {
         props.login(formData.email, formData.password, formData.rememberMe);
     }
 
+    if (props.isAuth) return <Navigate replace to='/profile'/>
+
     return (
         <div>
             <h1>Login</h1>
@@ -40,4 +43,8 @@ const Login = (props) => {
     );
 };
 
-export default connect(null,{login})(Login);
+const mapStateToProps = (state) => ({
+    isAuth: state.auth.isAuth,
+});
+
+export default connect(mapStateToProps,{login})(Login);
